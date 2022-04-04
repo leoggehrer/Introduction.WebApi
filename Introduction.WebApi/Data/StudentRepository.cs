@@ -32,6 +32,10 @@
             {
                 throw new Exception($"{nameof(model.MatriculationNumber)} must be unique.");
             }
+            if (students.Count() > 0)
+            {
+                model.Id = students.Max(s => s.Id) + 1;
+            }
             return Task.Run(() => students.Add(model));
         }
 
